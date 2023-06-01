@@ -2,6 +2,9 @@ import hello
 
 
 # 定义一个类
+from utils.tool import load_text
+
+
 class Student:
     # 定义构造函数
     def __init__(self, name, age):
@@ -46,6 +49,18 @@ def forSlice(a):
     print(a[1:5:-1])  # step=-1，决定了从右往左取值，而start_index=1到end_index=5决定了从左往右取值，互相矛盾 结果[ ]
     print(a[:-3:-1])  # step=-1，从右往左取值，从“终点”开始一直取到end_index=5 结果[9, 7]
 
+def tryExcept():
+    try:
+        print(1 / 0)
+    except ZeroDivisionError as e:
+        print(e)
+    finally:
+        print("finally")
+
+def readFile():
+    name = "json.txt"
+    path = f'{name}'
+    print(load_text(path)) # 调用utils包里的tool.py里的load_text方法
 
 # 如果是主程序（自已程序是入口，而非其它包调用这个文件），就执行下面的代码
 if __name__ == '__main__':
@@ -72,3 +87,5 @@ if __name__ == '__main__':
     print(s.twoSum([2, 7, 11, 15], 9))
     forArray([1, 3, 5, 7, 9])
     forSlice([1, 3, 5, 7, 9])
+    tryExcept();
+    readFile();

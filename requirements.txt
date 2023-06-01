@@ -1,0 +1,9 @@
+appdirs==1.4.4
+attrs==21.4.0
+beautifulsoup4==4.11.2
+elasticsearch==7.9.1
+elasticsearch-dsl==7.3.0
+Flask==1.1.2
+Flask-Docs==0.6.3
+redis==4.0.2
+
