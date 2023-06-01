@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: test-web
+spec:
+  type: NodePort
+  selector:
+    app: test-web
+  ports:
+    - protocol: TCP
+      port: 9010
+      nodePort: 30068
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-web-deployment
+spec:
+  selector:
+    matchLabels:
+      app: test-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      containers:
+      - name: text-classification-controller
+        image: {{IMAGE_REPOSITORY}}/rgzn/test-web:{{IMAGE_TAG}}
+        ports:
+        - containerPort: 9010
+        resources:
+          requests:
+            memory: "812Mi"
+            cpu: "200m"
+          limits:
+            memory: "812Mi"
+            cpu: "200m"
