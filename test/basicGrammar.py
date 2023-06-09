@@ -64,6 +64,27 @@ def t2(param1, **param2):
     print(param1)
     print(param2)
 
+class people:
+    name=''
+    age=0
+    __weight=0 # 私有属性
+    def __init__(self,n,a,w):
+        self.name=n
+        self.age=a
+        self.__weight=w
+    def speak(self):
+        print("%s 说: 我 %d 岁。" %(self.name,self.age))
+
+class student(people):
+    grade=''
+    def __init__(self,n,a,w,g):
+        # 调用父类的构函
+        people.__init__(self,n,a,w)
+        self.grade=g
+    # 覆写父类的方法
+    def speak(self):
+        print("%s 说: 我 %d 岁了，我在读 %d 年级" %(self.name,self.age,self.grade))
+
 # 如果是主程序（自已程序是入口，而非其它包调用这个文件），就执行下面的代码
 if __name__ == '__main__':
     hello.printName("zzl")
@@ -119,7 +140,7 @@ if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option("--mode", dest="mode", help="interaction mode: training, test")
     (options, args) = parser.parse_args()
-    assert options.mode is not None, "missing mode"
+    # assert options.mode is not None, "missing mode"
     if options.mode == 'svt':
         print("测试环境")
     elif options.mode == 'prod':
@@ -130,3 +151,6 @@ if __name__ == '__main__':
     # 测试*和**的用法
     t1(1, 2, 3, 4)
     t2(1, a=2, b=3)
+
+    studnet= student('zzl', 18, 100, 3)
+    studnet.speak()
