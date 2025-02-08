@@ -3,7 +3,8 @@ class Animal:
         self.name = name
 
     def speak(self):
-        print("This animal makes a sound.")
+        print("This animal makes a sound.", self.name)
+
 
 class Dog(Animal):
     def __init__(self, name, breed):
@@ -12,10 +13,11 @@ class Dog(Animal):
 
     def speak(self):
         super().speak()  # 调用父类的speak方法
-        print("Woof!")
+        print("Woof!", self.breed)
+
 
 dog = Dog("Buddy", "Golden Retriever")
 dog.speak()
 # 输出：
-# This animal makes a sound.
-# Woof!
+# This animal makes a sound. Buddy
+# Woof! Golden Retriever
