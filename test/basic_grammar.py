@@ -136,7 +136,7 @@ if __name__ == '__main__':
     result = 1 if a > b else 2
     print(result)
 
-    # 输入参数测试,python .\basicGrammar.py --mode=prod
+    # 输入参数测试,python .\basic_grammar.py --mode=prod
     parser = OptionParser()
     parser.add_option("--mode", dest="mode", help="interaction mode: training, test")
     (options, args) = parser.parse_args()
