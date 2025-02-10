@@ -25,11 +25,16 @@ class People:
     def __init__(self, name):
         self.name = name  # 属性
 
+    def __str__(self):  # 当类以字符串返回时，执行这个魔法方法
+        return f"dog string {self.name}"
+
     def bark(self):  # 方法
         print(f"{self.name} says chinese!")
 
-my_dog = People("Buddy")  # 创建对象
-my_dog.bark()          # 输出: Buddy says chinese!
+people = People("Buddy")  # 创建对象
+people.bark()          # 输出: Buddy says chinese!
+
+print("dog string",people)
 
 class Animal:
     def speak(self):
@@ -48,3 +53,4 @@ class Cat(Animal):  # Cat 也继承 Animal
 my_dog = Dog()
 my_dog.speak()  # 输出: 动物发声
 my_dog.bark()   # 输出: 汪汪!
+
