@@ -1,3 +1,5 @@
+* https://docs.python.org/zh-cn/3.13/
+ 
 # 一 基础知识与基本类型
 ### 1. **二进制与十六进制**
 #### 1.1 二进制
@@ -387,9 +389,246 @@ my_dog = Dog()
 my_dog.speak()  # 输出: 汪汪!
 ```
 
-### 总结
+### 4. **类中的方法**
+
+#### 4.1 实例方法（Instance Methods）
+实例方法是最常见的方法类型，它们需要一个类的实例来调用，并且可以访问实例的属性和其他方法。
+
+##### 特点
+* 第一个参数通常是`self`，代表类的实例。
+* 可访问实例的属性和其他方法。
+* 必须通过类的实例来调用。
+
+##### 示例
+```python
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+
+    def instance_method(self):
+        print(f"Instance method called. Value: {self.value}")
+
+# 创建实例并调用实例方法
+obj = MyClass(10)
+obj.instance_method()  # 输出: Instance method called. Value: 10
+```
+
+#### 4.2 静态方法（Static Methods）
+静态方法不需要类的实例，也不需要访问实例的属性或方法。它们通常用于与类相关的功能，但不依赖于类的实例。
+##### 特点
+* 不需要`self`参数。
+* 可以通过类名直接调用，也可以通过实例调用。
+* 不访问实例的属性或方法。
+##### 定义方式
+使用`@staticmethod`装饰器来定义静态方法。
+##### 示例
+```python
+class MyClass:
+    @staticmethod
+    def static_method():
+        print("Static method called.")
+
+# 通过类名调用静态方法
+MyClass.static_method()  # 输出: Static method called.
+
+# 通过实例调用静态方法
+obj = MyClass()
+obj.static_method()  # 输出: Static method called.
+```
+
+#### 4.3 类方法（Class Methods）
+类方法与静态方法类似，但它们可以访问类本身，而不是类的实例。类方法的第一个参数通常是`cls`，代表类本身。
+##### 特点
+* 第一个参数是`cls`，代表类本身。
+* 可以通过类名直接调用，也可以通过实例调用。
+* 常用于工厂方法或与类相关的操作。
+##### 定义方式
+使用`@classmethod`装饰器来定义类方法。
+##### 示例
+```python
+class MyClass:
+    @classmethod
+    def class_method(cls):
+        print(f"Class method called. Class name: {cls.__name__}")
+
+# 通过类名调用类方法
+MyClass.class_method()  # 输出: Class method called. Class name: MyClass
+
+# 通过实例调用类方法
+obj = MyClass()
+obj.class_method()  # 输出: Class method called. Class name: MyClass
+```
+##### 总结
+* 实例方法：需要类的实例来调用，可以访问实例的属性和方法。`self`
+* 静态方法：不需要类的实例，不访问实例的属性或方法，可以通过类名或实例调用。` @staticmethod`
+* 类方法：可以访问类本身，第一个参数是`cls`，可以通过类名或实例调用。`@classmethod`
+* 
+
+### 5. **总结**
 - **定义函数**：使用 `def` 关键字，可以设置默认参数和可变参数。
 - **定义类**：使用 `class` 关键字，包含构造函数和方法。
 - **类的继承**：子类可以继承父类的方法和属性，并可以重写父类的方法。
 
 希望这个总结对你有所帮助！如果还有其他问题，请随时问我！
+
+# 五 包与模块
+
+在Python中，**包**和**模块**是组织和管理代码的重要概念。它们帮助开发者将代码分成更小、更易于管理的部分，从而提高代码的可读性和重用性。以下是对包与模块的详细介绍及其使用方法。
+
+## 1. 模块（Module）
+
+### 什么是模块？
+模块是一个包含Python代码的文件，通常以`.py`为扩展名。模块可以定义函数、类和变量，也可以包含可执行的代码。通过模块，可以将相关的功能组织在一起。
+
+### 如何创建模块？
+要创建模块，只需创建一个Python文件并定义所需的函数和类。例如，创建一个名为`mymodule.py`的文件：
+
+```python
+# mymodule.py
+
+def greet(name):
+    return f"Hello, {name}!"
+
+class Calculator:
+    def add(self, a, b):
+        return a + b
+```
+
+### 如何使用模块？
+要使用模块，可以使用`import`语句导入模块，然后调用其中的函数或类。
+
+```python
+# main.py
+import mymodule
+
+print(mymodule.greet("Alice"))  # 输出: Hello, Alice!
+
+calc = mymodule.Calculator()
+print(calc.add(5, 3))  # 输出: 8
+```
+
+### 常用的导入方式：
+- `import module_name`：导入整个模块。
+- `from module_name import function_name`：从模块中导入特定的函数。
+- `from module_name import *`：导入模块中的所有内容（不推荐）。
+
+## 2. 包（Package）
+### 什么是包？
+包是一个包含多个模块的文件夹，用于组织相关模块。包必须包含一个名为`__init__.py`的文件，该文件可以是空的，也可以包含初始化代码。包可以嵌套，即包中可以包含子包。
+
+### 如何创建包？
+1. 创建一个文件夹作为包，例如`mypackage`。
+2. 在该文件夹中创建一个`__init__.py`文件。
+3. 在包中添加模块文件，例如`module1.py`和`module2.py`。
+
+```plaintext
+mypackage/
+    __init__.py
+    module1.py
+    module2.py
+```
+
+#### `__init__.py` 示例：
+```python
+# mypackage/__init__.py
+from .module1 import greet
+from .module2 import Calculator
+```
+
+### 如何使用包？
+要使用包中的模块，可以使用`import`语句导入包或包中的模块。
+
+```python
+# main.py
+import mypackage
+
+print(mypackage.greet("Bob"))  # 调用包中的函数
+
+calc = mypackage.Calculator()
+print(calc.add(10, 20))  # 调用包中的类
+```
+
+### 导入子模块：
+如果需要导入包中的特定模块，可以这样做：
+
+```python
+from mypackage import module1
+
+print(module1.greet("Charlie"))
+```
+
+### 小结
+- **模块**是一个单一的Python文件，包含相关的函数和类。
+- **包**是一个包含多个模块的文件夹，通过`__init__.py`文件来标识并进行初始化。
+
+## 总结
+使用模块和包可以有效地组织和管理Python代码，使得代码更加结构化和模块化。通过合理的命名和组织，可以提高代码的可读性和可维护性。如果你有任何具体问题或者需要示例，请随时告诉我！
+
+
+
+# 六 异常处理
+当然可以！在Python中，异常处理是通过`try`、`except`、`else`和`finally`语句来实现的。它允许你优雅地处理错误，而不是让程序崩溃。下面是对这些概念的详细介绍：
+
+### 1. 基本结构
+
+```python
+try:
+    # 可能会引发异常的代码
+    result = 10 / 0  # 这里会引发ZeroDivisionError
+except ZeroDivisionError:
+    # 处理特定的异常
+    print("不能除以零！")
+except Exception as e:
+    # 处理其他所有异常
+    print(f"发生了一个异常: {e}")
+else:
+    # 如果没有异常发生，则执行这部分
+    print("计算成功:", result)
+finally:
+    # 无论是否发生异常，都会执行这部分
+    print("结束处理。")
+```
+
+### 2. 各部分解释
+
+- **try**：在这个块中放置可能会引发异常的代码。
+- **except**：捕获并处理在try块中引发的特定异常。如果你想捕获所有异常，可以使用`except Exception`。
+- **else**：如果try块中的代码没有引发任何异常，则执行这个块。
+- **finally**：无论try块中是否发生异常，这个块中的代码都会执行，通常用于清理资源，比如关闭文件或网络连接。
+
+### 3. 自定义异常
+
+你还可以创建自己的异常类，继承自`Exception`类：
+
+```python
+class MyCustomError(Exception):
+    pass
+
+def check_value(x):
+    if x < 0:
+        raise MyCustomError("值不能为负数！")
+
+try:
+    check_value(-1)
+except MyCustomError as e:
+    print(e)
+```
+
+### 4. 捕获多个异常
+
+你可以在一个`except`块中捕获多个异常：
+
+```python
+try:
+    # 可能引发多种异常的代码
+    value = int(input("请输入一个整数: "))
+    result = 10 / value
+except (ValueError, ZeroDivisionError) as e:
+    print(f"发生了一个错误: {e}")
+```
+
+### 5. 总结
+
+异常处理是Python编程中非常重要的一部分，它帮助开发者管理错误和异常情况，使程序更加健壮和可维护。掌握异常处理，可以让你的代码在面对意外情况时更从容不迫！
+
+希望这些信息对你有帮助！如需更多细节，随时问我！😄
