@@ -2,7 +2,7 @@ import logging
 
 from flask import Flask
 
-from api.user import userPrint
+from rest_api.user import userPrint
 
 app = Flask(__name__)
 app.register_blueprint(userPrint, url_prefix="/users")

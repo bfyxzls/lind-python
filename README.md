@@ -52,5 +52,5 @@ pip config set global.password <your-password>
 如果你使用了两步验证，那么你需要使用 API 令牌（API token）来进行身份验证。你可以通过访问 PyPI 的个人资料页面获取 API 令牌，然后将该令牌作为密码输入到 pip 中。
 
 ```shell
-pip config set global.password <your-api-token>
+pip config set global.password <your-rest_api-token>
 ```

@@ -1229,7 +1229,7 @@ cd myproject
 在项目中创建一个新的应用，例如 `api`。
 
 ```bash
-python manage.py startapp api
+python manage.py startapp rest_api
 ```
 
 ### 4. 配置 Django 项目
@@ -1242,7 +1242,7 @@ python manage.py startapp api
 INSTALLED_APPS = [
     ...
     'rest_framework',
-    'api',  # 添加你的应用
+    'rest_api',  # 添加你的应用
 ]
 ```
 
@@ -1251,7 +1251,7 @@ INSTALLED_APPS = [
 在 `api/models.py` 中定义一个简单的模型。例如，我们可以创建一个 `Item` 模型：
 
 ```python
-# api/models.py
+# rest_api/models.py
 
 from django.db import models
 
@@ -1268,7 +1268,7 @@ class Item(models.Model):
 在 `api/serializers.py` 中创建一个序列化器，用于将模型实例转换为 JSON 格式。
 
 ```python
-# api/serializers.py
+# rest_api/serializers.py
 
 from rest_framework import serializers
 from .models import Item
@@ -1284,7 +1284,7 @@ class ItemSerializer(serializers.ModelSerializer):
 在 `api/views.py` 中创建视图来处理 API 请求。我们可以使用 DRF 提供的通用视图。
 
 ```python
-# api/views.py
+# rest_api/views.py
 
 from rest_framework import generics
 from .models import Item
@@ -1304,7 +1304,7 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
 在 `api/urls.py` 中配置 URL 路由，将请求映射到视图。
 
 ```python
-# api/urls.py
+# rest_api/urls.py
 
 from django.urls import path
 from .views import ItemListCreate, ItemDetail
@@ -1325,7 +1325,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # 包含 api 的 URLs
+    path('rest_api/', include('rest_api.urls')),  # 包含 rest_api 的 URLs
 ]
 ```
 
