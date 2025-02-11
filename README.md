@@ -1,8 +1,8 @@
 # python笔记
 ## 依赖包
-
-* 依赖包文件：requirements.txt 安装整个requirements.txt, pip --default-timeout=100 install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-* 安装某个本地包：pip install sdist/tools.tar.gz
+* 生成依赖包文件 pip freeze > requirements.txt
+* 安装包从依赖包文件 requirements.txt 安装整个requirements.txt, pip --default-timeout=100 install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+* 安装某个本地包 pip install sdist/tools.tar.gz
 * 使用阿里加速器 pip install flask -i https://mirrors.aliyun.com/pypi/simple/
 
 ## 全局镜像加速器
