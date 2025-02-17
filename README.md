@@ -5,6 +5,11 @@
 * 安装某个本地包 pip install sdist/tools.tar.gz
 * 使用阿里加速器 pip install flask -i https://mirrors.aliyun.com/pypi/simple/
 
+## setup.py工具
+* 生成安装包 python setup.py sdist bdist_wheel 这将生成一个源代码包（  .tar.gz  ）和一个轮（  .whl  ）文件，位于dist目录中
+* 上传到PyPI pip install twine && twine upload dist/*
+* 安装项目 pip install .
+* 以开发模式安装（即修改代码后无需重新安装） pip install -e .
 ## 全局镜像加速器
 
 打开C:\Users\User\AppData\Roaming\pip\pip.ini

@@ -3,6 +3,9 @@ import csv
 import pathlib
 import subprocess
 import math
+import time
+
+import torch
 
 
 def load_text(path):
@@ -58,3 +61,26 @@ def format_credit(value):
     if not value:
         return 0.0
     return math.ceil(value * 100) / 100
+
+
+import time
+
+
+def measure_runtime(func, *args, **kwargs):
+    """
+    测量函数的运行时间。
+
+    参数:
+        func: 要测量的函数。
+        *args: 函数的参数。
+        **kwargs: 函数的关键字参数。
+
+    返回:
+        runtime: 函数的运行时间（秒）。
+        result: 函数的返回值。
+    """
+    start_time = time.time()  # 获取开始时间
+    result = func(*args, **kwargs)  # 调用函数
+    end_time = time.time()  # 获取结束时间
+    runtime = end_time - start_time  # 计算运行时间
+    return runtime, result  # 返回运行时间和函数的返回值 runtime, result = measure_runtime(example_function) print(f"运行时间: {runtime:.6f} 秒")
