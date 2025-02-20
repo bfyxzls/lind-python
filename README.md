@@ -4,7 +4,8 @@
 * 安装包从依赖包文件 requirements.txt 安装整个requirements.txt, pip --default-timeout=100 install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 * 安装某个本地包 pip install sdist/tools.tar.gz
 * 使用阿里加速器 pip install flask -i https://mirrors.aliyun.com/pypi/simple/
-
+* 当出现包冲突时，按着提示，执行：pip install --upgrade 包名==版本号，即可解决冲突问题
+* 查看依赖关系树，pip install pipdeptree && pipdeptree
 ## setup.py工具
 * 生成安装包 python setup.py sdist bdist_wheel 这将生成一个源代码包（  .tar.gz  ）和一个轮（  .whl  ）文件，位于dist目录中
 * 上传到PyPI pip install twine && twine upload dist/*
