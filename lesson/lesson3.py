@@ -34,3 +34,19 @@ for i in range(3):
 else:
     print("循环正常结束")  # 当 for 循环没有被 break 终止时执行
 
+dic = {"key": 1, "name": "lind"}
+for k, v in dic.items():
+    print("oo", k, v)
+
+body = {
+    "query": {
+        "bool": {
+            "must": [
+                {"term": {"lawyerName.keyword": "lind"}},
+                {"term": {"lawfirmName.keyword": "zhanling"}},
+            ]
+        }
+    }
+}
+for k, v in body.items():
+    print("body", k, v)
