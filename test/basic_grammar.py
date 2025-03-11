@@ -25,7 +25,6 @@ def forArray(nums):
     for index, item in enumerate(nums):
         print("index:%d,value:%d" % (index, item))
 
-
 # 列表，字符串，元组都支持slice操作
 # 测试数据 [1 , 3 , 5 , 7 , 9]
 # 正索引	0 , 1 , 2 , 3 , 4 [1,3,5,7,9]
@@ -154,3 +153,6 @@ if __name__ == '__main__':
 
     studnet= student('zzl', 18, 100, 3)
     studnet.speak()
+
+print(5//2) # 整除
+print(5/2) # 除以，带小数
