@@ -84,3 +84,23 @@ def measure_runtime(func, *args, **kwargs):
     end_time = time.time()  # 获取结束时间
     runtime = end_time - start_time  # 计算运行时间
     return runtime, result  # 返回运行时间和函数的返回值 runtime, result = measure_runtime(example_function) print(f"运行时间: {runtime:.6f} 秒")
+
+def crc16(data: bytes, poly: int = 0x1021, init_crc: int = 0xFFFF) -> int:
+    """
+    CRC16 算法实现
+    :param data: 待校验的数据（字节序列）
+    :param poly: 生成多项式，默认使用 0x1021
+    :param init_crc: 初始 CRC 值，通常为 0xFFFF
+    :return: 计算出的 CRC 校验码
+    """
+    crc = init_crc
+
+    for byte in data:
+        crc ^= (byte << 8)  # 将当前字节与 CRC 高位异或
+        for _ in range(8):  # 对每一位进行处理
+            if crc & 0x8000:  # 检查最高位是否为 1
+                crc = (crc << 1) ^ poly  # 左移并与多项式异或
+            else:
+                crc <<= 1  # 左移
+            crc &= 0xFFFF  # 保证 CRC 为 16 位
+    return crc

@@ -1,6 +1,7 @@
 from BinaryTree import BinaryTree
 from algorithm.ParseTree import inorder, postorder
 
+
 r = BinaryTree('a')
 print(r.getRootVal())
 print(r.getLeftChild())
