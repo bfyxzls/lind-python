@@ -111,8 +111,8 @@ if MATPLOTLIB_AVAILABLE:
     plt.subplot(2, 2, 2)
     plt.contour(X1, X2, Z, levels=20, cmap='RdYlBu_r')
     plt.colorbar(label='f(x1, x2)')
-
     # 在几个点上画梯度向量
+
     points_2d = [(1.5, 1.5), (0, 1.5), (-1.5, 0), (0, 0)]
     colors = ['red', 'green', 'blue', 'black']
 
